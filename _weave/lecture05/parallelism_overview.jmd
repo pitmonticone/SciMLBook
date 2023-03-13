@@ -64,7 +64,7 @@ Each thread has its own stack associated with it.
 
 ![](https://dave.cheney.net/wp-content/uploads/2015/08/stack-growth.png)
 
-This is an important distinction because many tasks may need to be ran concurrently
+This is an important distinction because many tasks may need to run concurrently
 but without parallelism. Examples of this are input/output (I/O). For example,
 in a game you may want to be updating the graphics, but the moment a user clicks
 you want to handle that event. You do not necessarily need to have these running
@@ -90,7 +90,7 @@ handling the I/O to directly be switched to in order to continue actions.
 #### The Main Event Loop
 
 Julia, along with other languages with a runtime (Javascript, Go, etc.) at its
-core is a single process running an event loop. This event loop has is the
+core is a single process running an event loop. This event loop  is the
 main thread, and "Julia program" or "script" that one is running is actually
 ran in a green thread that is controlled by the main event loop. The event
 loop takes over to look for other work whenever the program hits a *yield point*.
@@ -120,7 +120,7 @@ is not corrupted).
 #### Asynchronous Calling Example
 
 This example will become more clear when we get to distributed computing, but
-for think of `remotecall_fetch` as a way to run a command on a different computer.
+for now think of `remotecall_fetch` as a way to run a command on a different computer.
 What we want to do is start all of the commands at once, and then wait for all
 the results before finishing the loop. We will use `@async` to make the call
 to `remotecall_fetch` be non-blocking, i.e. it'll start the job and only poll
